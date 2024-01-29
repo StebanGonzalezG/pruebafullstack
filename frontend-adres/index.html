@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Prueba Adres</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/styles.css'>
+    <script src='./js/main.js'></script>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <nav class="nav">
+                <a href="#registroForm" class="nav_items">Registrar</a>
+                <a href="#historial" class="nav_items">Historial</a>
+                <a href="#" class="nav_items">Inicio</a>
+            </nav>
+            <section class="hero_container">
+                <div class="hero_texts">
+                    <h1 class="hero_title">ADRES REGISTRO DE ADQUISICIONES</h1>
+                    <h2 class="hero_subtitle">Este aplicativo deberá gestionar el registro de requerimientos de adquisiciones, ya sean bienes o 
+                        servicios</h2>
+                </div>
+                <div class="hero_image">
+                    <img src="./images/logo_ADRES.png" alt="logoAdres">
+                </div>
+            </section>
+
+            
+        </div>
+
+        <div class="hero_wave" style="overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" 
+            style="height: 100%; width: 100%;"><path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+             style="stroke: none; fill: #fff;"></path></svg></div>
+    </header>
+      
+    <main style="background-color: #fff;">
+        <section class="presentation">
+            <!-- Formulario de Registro -->
+            <form id="registroForm" action="/api/registrar" method="POST">
+
+                <input type="text" id="id" name="id" style="display: none;">
+
+                <label for="presupuesto">Presupuesto:</label>
+                <input type="text" id="presupuesto" name="presupuesto"  placeholder="0" oninput="formatoPesos(this)" required>
+
+                <label for="unidad">Unidad:</label>
+                <input type="text" id="unidad" name="unidad" required>
+
+                <label for="tipo">Tipo de Bien o Servicio:</label>
+                <input type="text" id="tipo" name="tipo" required>
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" oninput="calcularValorTotal()" required>
+
+                <label for="valorUnitario">Valor Unitario:</label>
+                <input type="number" id="valorUnitario" name="valorUnitario" oninput="calcularValorTotal()" required>
+
+                <label for="valorTotal">Valor Total:</label>
+                <input type="number" id="valorTotal" name="valorTotal" readonly>
+
+                <label for="fechaAdquisicion">Fecha de Adquisición:</label>
+                <input type="date" id="fechaAdquisicion" name="fechaAdquisicion" required>
+
+                <label for="proveedor">Proveedor:</label>
+                <input type="text" id="proveedor" name="proveedor" required>
+
+                <label for="documentacion">Documentación:</label>
+                <input type="text" id="documentacion" name="documentacion" required>
+
+                <button type="button" id="registrarButton" onclick="registrarDatos(this)">Registrar</button>
+                <button type="button" id="deleteButton" onclick="deleteData(this)">Borrar</button>
+                <button type="button" id="updateButton" onclick="registrarDatos(this)" style="display: none;">Actualizar</button>
+
+            </form>
+        </section>
+        <section  id="historial" class="historialSection">
+            <h2>Historial</h2>
+            <table class="historialTable">
+                <div class="filtro-container">
+                    <h4>Filtro:</h4>
+                    <input type="text" id="filtro" oninput="filtrarHistorial()" placeholder="Ingrese término de búsqueda">
+                    <button class="buttonadd" type="buttonadd" onclick="limpiarFiltro">Limpiar Filtro</button>
+                </div>
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>Presupuesto</th>
+                        <th>Unidad</th>
+                        <th>Tipo de Bien o Servicio</th>
+                        <th>Cantidad</th>
+                        <th>Valor Unitario</th>
+                        <th>Valor Total</th>
+                        <th>Fecha de Adquisición</th>
+                        <th>Proveedor</th>
+                        <th>Documentación</th>
+                    </tr>
+                </thead>
+                <tbody class="historialList"></tbody>
+            </table>
+        </section>        
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+    <script>
+        function formatoPesos(input) {
+         let valorSinFormato = input.value.replace(/[^0-9]/g, '');
+         let valorDecimal = parseInt(valorSinFormato, 10);
+         let valorFormateado = numeral(valorDecimal).format('$0,0');
+         input.value = valorFormateado;
+        }
+
+        function calcularValorTotal() {
+            const cantidad = document.getElementById('cantidad').value;
+            const valorUnitario = document.getElementById('valorUnitario').value;
+            const valorTotal = cantidad * valorUnitario;
+            
+            document.getElementById('valorTotal').value = valorTotal;
+        }
+        </script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

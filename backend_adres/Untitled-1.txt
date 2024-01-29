@@ -1,0 +1,7 @@
+-- database: c:\Users\IngSt\OneDrive\Documentos\workspace\backend_adres\db.sqlite3
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM "backend_app_adquisicion";
+
+DELETE FROM backend_app_adquisicion
