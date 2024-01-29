@@ -12,3 +12,7 @@ PROYECTO FULL STACK DJANGO / JAVASCRIPT
   - CMD para ejecutar el backend: python manage.py runserver,  estar atento del puerto a ejecutar ya que tiene que ser http://127.0.0.1:8000/
   - el CMD python manage.py migrate (Para actualizar los modelos bd)
   
+
+INICIALIZAR FRONTEND:
+
+- Comprobamos que contengan las carpetas correspondientes y se inicializa con el index.html dando click derecho y live server
