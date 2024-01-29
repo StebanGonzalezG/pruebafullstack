@@ -1,3 +1,4 @@
+// funcion para registro la adquisiones de adres
 function registrarDatos() {
    const formulario = document.getElementById('registroForm');
    const elementosFormulario = Array.from(formulario.elements);
@@ -28,7 +29,8 @@ function registrarDatos() {
       .then(data => {
           console.log('Registro actualizado con éxito:', data);
           formulario.reset();
-          // Puedes realizar acciones adicionales después de actualizar
+          cargarHistorial();
+          
       })
       .catch(error => console.error('Error al enviar la solicitud:', error));
   } else {
@@ -49,7 +51,7 @@ function registrarDatos() {
       .then(data => {
           console.log('Registro creado con éxito:', data);
           formulario.reset();
-          // Puedes realizar acciones adicionales después de registrar
+          cargarHistorial();
       })
       .catch(error => console.error('Error al enviar la solicitud:', error));
   }
@@ -93,6 +95,7 @@ function cargarHistorial() {
 // Llamar a cargarHistorial al cargar la página
 document.addEventListener('DOMContentLoaded', cargarHistorial);
 
+// edita registro seleccionado en adres
 function editarRegistro(button) {
    var row = button.closest('tr');
    var id = button.getAttribute('data-id');

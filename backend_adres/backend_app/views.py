@@ -9,12 +9,13 @@ from .models import Adquisicion
 @require_POST
 def registrar_datos(request):
     try:
+        # se regitran los datos y se valida los campos requeridos para llenar la bd
         datos_json = json.loads(request.body)
         campos_requeridos = ['presupuesto', 'unidad', 'tipo', 'cantidad', 'valorUnitario', 'fechaAdquisicion', 'proveedor', 'documentacion']
         for campo in campos_requeridos:
             if campo not in datos_json:
                 raise ValueError(f'El campo "{campo}" es requerido.')
-
+            #realiza el guardado
         nueva_adquisicion = Adquisicion.objects.create(
             presupuesto=datos_json['presupuesto'],
             unidad=datos_json['unidad'],
@@ -27,7 +28,6 @@ def registrar_datos(request):
             documentacion=datos_json['documentacion']
         )
 
-        # Puedes devolver una respuesta JSON si es necesario
         return JsonResponse({'mensaje': 'Datos registrados correctamente'}, status=201)
 
     except json.JSONDecodeError as e:
