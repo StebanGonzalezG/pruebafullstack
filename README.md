@@ -16,3 +16,5 @@ PROYECTO FULL STACK DJANGO / JAVASCRIPT
 INICIALIZAR FRONTEND:
 
 - Comprobamos que contengan las carpetas correspondientes y se inicializa con el index.html dando click derecho y live server
+- otro metodo es con el CMD python -m http.server en la cual nos ejecuta el puerto del proyecto, nos dirijimos hacia el buscador predeterminado y colocamos http://localhost:8000/ y
+  ya podemos ver el proyecto funcionando.
